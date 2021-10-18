@@ -31,6 +31,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",
-    "sequelize": "^6.7.0"
+    "sequelize": "^6.7.0",
+    "uuid": "^8.3.2"
   }
 }
