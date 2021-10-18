@@ -5,7 +5,8 @@
   "author": "gustadsg@outlook.com.br <gustadsg@outlook.com.br>",
   "license": "MIT",
   "scripts": {
-    "commit": "cz"
+    "commit": "cz",
+    "lint": "eslint --cache --fix --ext .js src/"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
