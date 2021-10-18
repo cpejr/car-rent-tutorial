@@ -1,0 +1,7 @@
+{
+  "name": "backend-tutorial",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "gustadsg@outlook.com.br <gustadsg@outlook.com.br>",
+  "license": "MIT"
+}
