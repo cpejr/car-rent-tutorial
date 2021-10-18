@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "commit": "cz",
-    "lint": "eslint --cache --fix --ext .js src/"
+    "lint": "eslint --cache --fix --ext .js src/",
+    "start": "node src/index.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
@@ -25,7 +26,9 @@
     }
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "express": "^4.17.1"
   }
 }
