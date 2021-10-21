@@ -1,6 +1,6 @@
-import validator from "validator";
-import { cpf as cpfValidator } from "cpf-cnpj-validator";
-import { User } from "../models/user";
+const { default: validator } = require("validator");
+const { cpf: cpfValidator } = require("cpf-cnpj-validator");
+const { User } = require("../models");
 
 async function create(req, res) {
   try {
@@ -26,13 +26,14 @@ async function create(req, res) {
       return res.status(400).json({ message: "Invalid email" });
     }
 
-    const sanitizedBirthdateOrNull = validator.toDate(birthdate);
+    const isValidDate = validator.isDate(birthdate, "DD/MM/YYYY");
 
-    if (!sanitizedBirthdateOrNull) {
+    if (!isValidDate) {
       return res.status(400).json({ message: "Invalid birthdate" });
     }
 
-    const sanitizedBirthdate = sanitizedBirthdateOrNull;
+    const [day, month, year] = birthdate.split("/");
+    const sanitizedBirthdate = new Date(year, month, day);
 
     if (!cpfValidator.isValid(cpf)) {
       return res.status(400).json({ message: "Invalid cpf" });

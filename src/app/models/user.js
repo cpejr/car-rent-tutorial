@@ -1,5 +1,8 @@
 const { Model } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
+const Encrypter = require("../helpers/encrypter");
+
+const encrypter = new Encrypter();
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -32,5 +35,11 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "User",
     }
   );
+
+  User.beforeCreate((user, options, callback) => {
+    // eslint-disable-next-line no-param-reassign
+    user.password = encrypter.encrypt(user.password);
+  });
+
   return User;
 };
