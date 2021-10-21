@@ -1,5 +1,6 @@
 const sequelize = require("sequelize");
 const { default: validator } = require("validator");
+const fns = require("date-fns");
 const { Car, Rent } = require("../models");
 
 async function create(req, res) {
@@ -16,7 +17,7 @@ async function create(req, res) {
       }
     }
 
-    const car = await Car.findOne(carId);
+    const car = await Car.findByPk(carId);
 
     if (!car) {
       return res.status(404).json({ message: "Car not found" });
@@ -51,6 +52,42 @@ async function create(req, res) {
   }
 }
 
+async function end(req, res) {
+  try {
+    const { user } = req;
+    const { carId } = req.params;
+
+    const car = await Car.findByPk(carId);
+    const rent = await Rent.findOne({
+      where: { userId: user.id, carId, endDate: null },
+    });
+
+    const startDate = new Date(rent.startDate);
+    const endDate = new Date();
+
+    const daysRented = fns.differenceInDays(startDate, endDate);
+
+    let cost = daysRented * parseFloat(car.dailyPrice);
+
+    if (daysRented < 1) {
+      cost = car.dailyPrice;
+    }
+
+    await Rent.update(
+      { totalPrice: cost, endDate },
+      {
+        where: { id: carId },
+      }
+    );
+
+    return res.status(200).json({ cost });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
 module.exports = {
   create,
+  end,
 };
