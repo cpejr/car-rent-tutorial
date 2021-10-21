@@ -20,9 +20,9 @@ async function auth(req, res, next) {
       return res.status(401).json({ message: "Invalid authorization" });
     }
 
-    const userId = jwt.verify(token, process.env.JWT_SECRET);
+    const { id } = jwt.verify(token, process.env.JWT_SECRET);
 
-    const user = await User.findOne(userId);
+    const user = await User.findByPk(id);
 
     if (!user) {
       return res.status(401).json({ message: "Invalid authorization" });
@@ -32,6 +32,8 @@ async function auth(req, res, next) {
 
     return next();
   } catch (error) {
+    console.error(error);
+
     if (error.name === "JsonWebTokenError") {
       return res.status(401).json({ message: "Invalid authorization" });
     }
@@ -44,6 +46,6 @@ async function auth(req, res, next) {
   }
 }
 
-module.expires = {
+module.exports = {
   auth,
 };
