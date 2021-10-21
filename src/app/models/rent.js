@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      total_price: DataTypes.NUMBER,
+      totalPrice: DataTypes.NUMBER,
       startDate: {
         type: DataTypes.DATE,
         allowNull: false,

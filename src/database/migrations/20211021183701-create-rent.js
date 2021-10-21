@@ -10,18 +10,18 @@ module.exports = {
       userId: {
         type: Sequelize.UUID,
         references: {
-          model: "User",
+          model: "Users",
           key: "id",
         },
       },
       carId: {
         type: Sequelize.UUID,
         references: {
-          model: "Car",
+          model: "Cars",
           key: "id",
         },
       },
-      total_price: {
+      totalPrice: {
         type: Sequelize.NUMBER,
       },
       startDate: {
