@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
+const { User } = require("../models");
 
-function auth(req, res, next) {
+async function auth(req, res, next) {
   try {
     const { authorization } = req.headers;
 
@@ -19,9 +20,15 @@ function auth(req, res, next) {
       return res.status(401).json({ message: "Invalid authorization" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.user = decoded;
+    const user = await User.findOne(userId);
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid authorization" });
+    }
+
+    req.user = user;
 
     return next();
   } catch (error) {
