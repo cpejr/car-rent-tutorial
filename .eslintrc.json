@@ -10,6 +10,8 @@
     "ecmaVersion": 13
   },
   "rules": {
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "no-unused-vars": "warn",
+    "class-methods-use-this": "off"
   }
 }

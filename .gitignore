@@ -1,2 +1,4 @@
 node_modules/
 .eslintcache
+src/database/database.sqlite3
+.env
