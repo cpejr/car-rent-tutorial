@@ -63,25 +63,57 @@ endAt
 
 ### Estrutura de pastas recomendada:
 
-- src
-  - app
-    - routes
-      - user.js
-      - car.js
-      - rent.js
-    - controllers
-      - user.js
-      - car.js
-      - rent.js
-    - middlewares
-      - auth.js
-    - model
-      - user.js
-      - car.js
-      - rent.js
-  - database
-    - migrations
-    - database.sqlite3
+- backend-tutorial
+
+  Essa é a pasta raiz do nosso projeto, aqui ficam os arquivos de configuração e todo o código fonte de nossa aplicação
+
+  - src
+
+    Essa é a pasta que guarda o código fonte da nossa aplicação
+
+    - app
+
+      Aqui fica o código fonte que não está diretamente ligado ao banco de dados.
+
+      - routes
+
+        As rotas são a parte da nossa aplicação responsável por expor nossa aplicação ao mundo externo por meio de "caminhos".
+
+        - user.js
+        - car.js
+        - rent.js
+
+      - controllers
+
+        Os controllers são a parte da aplicação responsável por gerenciar o fluxo de uma requisição.
+
+        - user.js
+        - car.js
+        - rent.js
+
+      - middlewares
+
+        Os middlewares são responsáveis por interceptar a requisição e realizar operações e/ou modificações antes que essa requisição passe para o próximo passo.
+
+        - auth.js
+
+      - model
+
+        Os models guardam a abstração das nossas entidades.
+
+        - user.js
+        - car.js
+        - rent.js
+
+    - database
+
+      Aqui fica o código relacionado ao banco de dados, como as migrations e os seeders, além do proprio banco de dados, se estivermos lidando com sqlite.
+
+      - migrations
+
+        As migrations são como um controle de versão do nosso banco de dados: cada nova migration corresponde a uma mudança no banco e a um commit.
+
+      - database.sqlite3
 
 ### Autenticação e rotas privadas
 
